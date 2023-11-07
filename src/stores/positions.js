@@ -7,6 +7,8 @@ export const usePositionsStore = defineStore('positions', () => {
   const positions = ref([]);
 
   const getPositions = async () => {
+    let data = [];
+
     const querySnapshot = await getDocs(collection(db, 'positions'));
 
     querySnapshot.forEach(doc => {
@@ -15,10 +17,10 @@ export const usePositionsStore = defineStore('positions', () => {
         ...doc.data()
       };
 
-      positions.value.push(product);
+      data.push(product);
     });
 
-    console.log('All Positions: ', positions.value);
+    positions.value = data;
   };
 
   return { 
