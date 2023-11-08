@@ -8,13 +8,20 @@
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
           {{ position.name }}
         </h5>
-        <p
+        <template
           v-for="option in getResults(position)"
           :key="option.id"
-          class="mb-3 font-normal text-gray-700"
         >
-          {{ option.name }}
-        </p>
+          <div class="flex items-center justify-between">
+            <p class="mb-3 font-normal text-gray-700">
+              {{ option.name }}
+            </p>
+
+            <p class="mb-3 font-normal text-gray-700">
+              {{ option.count }}
+            </p>
+          </div>
+        </template>
       </div>
     </template>
   </div>
@@ -22,7 +29,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { collection, onSnapshot, query, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
 
 const positions  = ref([]);
@@ -44,54 +51,59 @@ const getPositions = async () => {
   positions.value = data.sort((a, b) => a.name.localeCompare(b.name));
 };
 
+const votes  = ref([]);
+
+const getVotes = async () => {
+  let data = [];
+
+  const querySnapshot = await getDocs(collection(db, 'votes'));
+
+  querySnapshot.forEach(doc => {
+    const votes = {
+      ...{ id: doc.id },
+      ...doc.data()
+    };
+
+    data.push(votes);
+  });
+
+  votes.value = data;
+};
+
 onMounted(() => {
   getPositions();
+  getVotes();
 });
 
 const getResults = (position) => {
-  const q = query(collection(db, 'votes'), where('idposition', '==', position.id));
-  
-  onSnapshot(q, (querySnapshot) => {
-    const votes = [];
+  const filteredVotes = votes.value.filter(vote => vote.idposition === position.id);
+  const counts = {};
+  const results = [];
 
-    querySnapshot.forEach((doc) => {
-      votes.push({
-        ...{ id: doc.id },
-        ...doc.data()
-      });
-    });
+  filteredVotes.forEach((obj) => {
+    const idoption = obj.idoption;
 
-    const counts = {};
-
-    const results = [];
-
-    votes.forEach((obj) => {
-      const idoption = obj.idoption;
-
-      if (counts[idoption]) {
-        counts[idoption] += 1;
-      } else {
-        counts[idoption] = 1;
-      }
-    });
-
-    votes.forEach((obj) => {
-      const idoption = obj.idoption;
-
-      if (counts[idoption] > 0) {
-        results.push({
-          idoption: idoption,
-          name: obj.option,
-          count: counts[idoption]
-        });
-
-        counts[idoption] = 0;
-      }
-    });
-    
-    console.log('Resultado', results);    
+    if (counts[idoption]) {
+      counts[idoption] += 1;
+    } else {
+      counts[idoption] = 1;
+    }
   });
 
-  return [];
+  filteredVotes.forEach((obj) => {
+    const idoption = obj.idoption;
+
+    if (counts[idoption] > 0) {
+      results.push({
+        idoption: idoption,
+        name: obj.option,
+        count: counts[idoption]
+      });
+
+      counts[idoption] = 0;
+    }
+  });
+  
+  return results.sort((a, b) => b.count - a.count);
 };
 </script>
