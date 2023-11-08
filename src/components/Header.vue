@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col p-4 gap-3">
-    <button @click="handleBack">
+    <button
+      v-if="route.path != '/'"
+      @click="handleBack"
+    >
       <svg
         class="w-6 h-6 text-gray-800"
         aria-hidden="true"
@@ -25,7 +28,8 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+
 const props = defineProps({
   title: {
     type: String,
@@ -33,6 +37,7 @@ const props = defineProps({
   }
 });
 
+const route = useRoute();
 const router = useRouter();
 
 const handleBack = () => {

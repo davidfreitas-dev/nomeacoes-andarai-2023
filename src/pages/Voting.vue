@@ -118,7 +118,8 @@ const handleConfirm = async () => {
 
   await setDoc(docRef, {
     idposition: position.value.id,
-    idoption: selectedOption.id
+    idoption: selectedOption.id,
+    option: selectedOption.name
   });
 
   isLoading.value = false;
