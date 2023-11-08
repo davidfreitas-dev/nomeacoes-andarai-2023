@@ -17,6 +17,11 @@ const router = createRouter({
       path: '/positions/:id',
       name: 'position',
       component: () => import('../pages/Position.vue')
+    },
+    {
+      path: '/voting/:id',
+      name: 'voting',
+      component: () => import('../pages/Voting.vue')
     }
   ]
 });
