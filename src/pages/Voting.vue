@@ -41,6 +41,7 @@
     <button
       type="button"
       class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 mr-2 mb-2"
+      @click="handleConfirm"
     >
       Confirmar voto
     </button>
@@ -50,7 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
 import Header from '@/components/Header.vue';
 
@@ -61,7 +62,10 @@ const idposition = ref(route.params.id);
 const getPosition = async () => { 
   const docRef = doc(db, 'positions', idposition.value);
   const docSnap = await getDoc(docRef);
-  position.value = docSnap.data();
+  position.value = {
+    ...{ id: idposition.value },
+    ...docSnap.data()
+  };
 };
 
 onMounted(async () => {
@@ -77,5 +81,16 @@ const selectOption = (idoption) => {
   });
 
   position.value.options[indexOption].selected = true;
+};
+
+const handleConfirm = () => {
+  const selectedOption = position.value.options.find(option => option.selected === true);
+  
+  const docRef = doc(collection(db, 'votes'));
+
+  setDoc(docRef, {
+    idposition: position.value.id,
+    idoption: selectedOption.id
+  });
 };
 </script>
