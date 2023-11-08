@@ -9,12 +9,12 @@ const router = createRouter({
       component: () => import('../pages/Home.vue')
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('../pages/Dashboard.vue')
+      path: '/positions',
+      name: 'positions',
+      component: () => import('../pages/Positions.vue')
     },
     {
-      path: '/position/:id',
+      path: '/positions/:id',
       name: 'position',
       component: () => import('../pages/Position.vue')
     }

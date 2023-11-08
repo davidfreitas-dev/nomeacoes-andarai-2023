@@ -2,10 +2,6 @@
 const emit = defineEmits(['update:modelValue', 'onKeyupEnter']);
 
 const props = defineProps({
-  disabled: {
-    type: Boolean,
-    default: false
-  },
   placeholder: { 
     type: String, 
     default: '' 
@@ -25,12 +21,11 @@ const updateValue = (event) => {
   <div class="flex items-center w-full h-[52px] rounded-lg px-4 text-zinc-700 bg-gray-100 ring-blue-700 focus-within:ring-2">
     <input
       type="text"
+      class="flex-1 text-font text-base placeholder:text-gray-400 bg-transparent outline-none"
       :value="modelValue"
       :placeholder="placeholder"
-      :disabled="disabled"
       @input="updateValue"
       @keyup.enter="$emit('onKeyupEnter')"
-      class="flex-1 mx-2 text-font text-base placeholder:text-gray-400 bg-transparent outline-none disabled:cursor-not-allowed"
     >
   </div>
 </template>

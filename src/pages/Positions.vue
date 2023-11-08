@@ -1,7 +1,5 @@
 <template>
-  <h1 class="text-2xl text-zinc-700 font-bold p-4">
-    Cargos
-  </h1>
+  <Header title="Cargos" />
 
   <div
     v-if="positions.length"
@@ -23,6 +21,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
+import Header from '@/components/Header.vue';
 
 const router = useRouter();
 const positions  = ref([]);
@@ -49,6 +48,6 @@ onMounted(() => {
 });
 
 const selectPosition = (idposition) => {
-  router.push('/position/' + idposition);
+  router.push('/positions/' + idposition);
 };
 </script>
