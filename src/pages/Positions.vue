@@ -93,7 +93,7 @@ const getPositions = async () => {
     data.push(position);
   });
 
-  positions.value = data;
+  positions.value = data.sort((a, b) => a.name.localeCompare(b.name));
 };
 
 onMounted(() => {

@@ -91,7 +91,7 @@ onMounted(async () => {
 const candidate = ref('');
 
 const insert = async () => {
-  position.value.options.unshift({
+  position.value.options.push({
     id: getRandomId(),
     name: candidate.value,
   });
@@ -101,7 +101,7 @@ const insert = async () => {
   const docRef = doc(db, 'positions', idposition.value);
 
   await updateDoc(docRef, {
-    options: position.value.options
+    options: position.value.options.sort((a, b) => a.name.localeCompare(b.name))
   });
 };
 
