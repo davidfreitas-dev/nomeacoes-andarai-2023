@@ -14,7 +14,7 @@
     
         <button
           type="button"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
           :disabled="!candidate"
           @click="insert"
         >
@@ -46,7 +46,7 @@
         v-for="option in position.options"
         :key="option.id"
       >
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between border-b pb-2">
           <span>{{ option.name }}</span>
 
           <button

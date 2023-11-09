@@ -13,13 +13,13 @@
         :key="option.id"
       >
         <div
-          class="option flex items-center gap-2 px-5 w-full h-14 rounded-xl transition-colors text-dark bg-gray-100"
-          :class="{ 'text-blue-700 bg-blue-100': option.selected }"
+          class="option flex items-center gap-1 px-5 w-full h-14 rounded-xl transition-colors text-dark bg-gray-100"
+          :class="{ 'text-green-600 bg-green-100': option.selected }"
           @click="selectOption(option.id)"
         >
           <svg
             v-if="option.selected"
-            class="w-6 h-6 text-blue-700"
+            class="w-6 h-6 text-green-600"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
