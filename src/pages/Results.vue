@@ -1,29 +1,31 @@
 <template>
-  <div class="cards flex flex-wrap gap-3 p-4">
-    <template
-      v-for="position in positions"
-      :key="position.id"
-    >
-      <div class="card flex-1 shrink basis-24 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-          {{ position.name }}
-        </h5>
-        <template
-          v-for="option in getResults(position)"
-          :key="option.id"
-        >
-          <div class="flex items-center justify-between">
-            <p class="mb-3 font-normal text-gray-700">
-              {{ option.name }}
-            </p>
+  <div class="p-4">
+    <div class="cards flex flex-wrap gap-3 p-4">
+      <template
+        v-for="position in positions"
+        :key="position.id"
+      >
+        <div class="card flex-1 shrink basis-24 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+            {{ position.name }}
+          </h5>
+          <template
+            v-for="option in getResults(position)"
+            :key="option.id"
+          >
+            <div class="flex items-center justify-between">
+              <p class="mb-3 font-normal text-gray-700">
+                {{ option.name }}
+              </p>
 
-            <p class="mb-3 font-normal text-gray-700">
-              {{ option.count }}
-            </p>
-          </div>
-        </template>
-      </div>
-    </template>
+              <p class="mb-3 font-normal text-gray-700">
+                {{ option.count }}
+              </p>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 

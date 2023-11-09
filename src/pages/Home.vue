@@ -1,18 +1,20 @@
 <template>
-  <Header title="Cargos" />
+  <div class="p-4">
+    <Header title="Cargos" />
 
-  <div
-    v-if="positions.length"
-    class="flex flex-col gap-2 px-4"
-  >
-    <template
-      v-for="position in positions"
-      :key="position.id"
+    <div
+      v-if="positions.length"
+      class="flex flex-col gap-2 px-4"
     >
-      <span @click="selectPosition(position.id)">
-        {{ position.name }}
-      </span>
-    </template>
+      <template
+        v-for="position in positions"
+        :key="position.id"
+      >
+        <span @click="selectPosition(position.id)">
+          {{ position.name }}
+        </span>
+      </template>
+    </div>
   </div>
 </template>
 
