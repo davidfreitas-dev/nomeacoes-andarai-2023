@@ -1,4 +1,6 @@
 <template>
+  <BackButton />
+  
   <Header :title="`Votação ${position.name}`" />
 
   <div
@@ -75,6 +77,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
+import BackButton from '@/components/BackButton.vue';
 import Header from '@/components/Header.vue';
 
 const route = useRoute();

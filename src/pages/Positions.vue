@@ -1,4 +1,6 @@
 <template>
+  <BackButton />
+
   <Header title="Cargos" />
 
   <form class="px-4">
@@ -72,6 +74,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
+import BackButton from '@/components/BackButton.vue';
 import Header from '@/components/Header.vue';
 import Input from '@/components/Input.vue';
 

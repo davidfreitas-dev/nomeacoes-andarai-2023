@@ -1,4 +1,6 @@
 <template>
+  <BackButton />
+  
   <Header :title="position.name" />
   
   <form class="px-4">
@@ -70,6 +72,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
+import BackButton from '@/components/BackButton.vue';
 import Header from '@/components/Header.vue';
 import Input from '@/components/Input.vue';
 
