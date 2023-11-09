@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="flex flex-col h-screen p-4 text-base dark:bg-background dark:text-white">
     <BackButton />
 
     <Header title="Cargos" />
@@ -14,12 +14,12 @@
   
         <button
           type="button"
-          class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
+          class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-lg text-sm p-3.5 text-center inline-flex items-center"
           :disabled="!department"
           @click="insert"
         >
           <svg
-            class="w-4 h-4"
+            class="w-5 h-5"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -40,13 +40,13 @@
 
     <div
       v-if="positions.length"
-      class="flex flex-col gap-2"
+      class="flex flex-col h-screen gap-3 py-3 dark:bg-background"
     >
       <template
         v-for="position in positions"
         :key="position.id"
       >
-        <div class="flex items-center justify-between border-b pb-2">
+        <div class="flex justify-between items-center pb-3.5 text-lg cursor-pointer border-b dark:border-zinc-900">
           <span @click="selectPosition(position.id)">
             {{ position.name }}
           </span>

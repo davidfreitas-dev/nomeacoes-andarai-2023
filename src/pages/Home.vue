@@ -1,17 +1,17 @@
 <template>
-  <div class="p-4">
+  <div class="flex flex-col h-screen p-4 text-base dark:bg-background dark:text-white">
     <Header title="Cargos" />
 
     <div
       v-if="positions.length"
-      class="flex flex-col gap-3 py-3"
+      class="flex flex-col h-screen gap-3 py-3 dark:bg-background"
     >
       <template
         v-for="position in positions"
         :key="position.id"
       >
-        <div
-          class="flex justify-between items-center border-b pb-2"
+        <span
+          class="flex justify-between items-center pb-3.5 text-lg cursor-pointer border-b dark:border-zinc-900"
           @click="selectPosition(position.id)"
         >
           {{ position.name }}
@@ -31,7 +31,7 @@
               d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
             />
           </svg>
-        </div>
+        </span>
       </template>
     </div>
   </div>

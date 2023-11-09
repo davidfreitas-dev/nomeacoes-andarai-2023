@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="flex flex-col h-screen p-4 text-base dark:bg-background dark:text-white">
     <BackButton />
   
     <Header :title="position.name" />
@@ -40,13 +40,13 @@
 
     <div
       v-if="position.options && position.options.length"
-      class="flex flex-col gap-3"
+      class="flex flex-col h-screen gap-3 py-3 dark:bg-background"
     >
       <template
         v-for="option in position.options"
         :key="option.id"
       >
-        <div class="flex items-center justify-between border-b pb-2">
+        <div class="flex justify-between items-center pb-3.5 text-lg cursor-pointer border-b dark:border-zinc-900">
           <span>{{ option.name }}</span>
 
           <button

@@ -18,7 +18,7 @@ const updateValue = (event) => {
 </script>
 
 <template>
-  <div class="flex items-center w-full h-[52px] rounded-lg px-4 text-zinc-700 bg-gray-100 ring-green-600 focus-within:ring-2">
+  <div class="flex items-center w-full h-[52px] px-4 rounded-lg text-zinc-700 border-2 dark:border-zinc-800 bg-gray-100 dark:bg-zinc-900 ring-green-600 focus-within:ring-2">
     <input
       type="text"
       class="flex-1 text-font text-base placeholder:text-gray-400 bg-transparent outline-none"

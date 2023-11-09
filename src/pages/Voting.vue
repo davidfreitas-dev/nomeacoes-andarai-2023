@@ -1,20 +1,20 @@
 <template>
-  <div class="p-4">
+  <div class="flex flex-col h-screen p-4 text-base dark:bg-background dark:text-white">
     <BackButton />
   
     <Header :title="`Votação ${position.name}`" />
 
     <div
       v-if="position.options && position.options.length"
-      class="options flex flex-1 flex-col items-start w-full gap-3 py-3"
+      class="options flex flex-col h-screen w-full gap-4 py-3 text-gray-600 dark:text-white"
     >
       <template
         v-for="option in position.options"
         :key="option.id"
       >
         <div
-          class="option flex items-center gap-1 px-5 w-full h-14 rounded-xl transition-colors text-dark bg-gray-100"
-          :class="{ 'text-green-600 bg-green-100': option.selected }"
+          class="option flex items-center gap-1 px-5 w-full h-16 rounded-lg transition-colors cursor-pointer bg-gray-100 dark:bg-zinc-900"
+          :class="{ 'text-green-600 bg-green-100 dark:bg-green-300 dark:bg-opacity-10': option.selected }"
           @click="selectOption(option.id)"
         >
           <svg
@@ -30,17 +30,17 @@
 
           <span
             v-else
-            class="h-5 w-5 mr-1 border-2 border-secondary-light rounded-full"
+            class="h-5 w-5 mr-1 rounded-full border-2 border-gray-300 dark:border-zinc-700"
           />
 
-          <label class="ml-2 text-sm font-semibold">
+          <label class="ml-2 font-semibold text-base">
             {{ option.name }}
           </label>
         </div>
       </template>
-    </div>
 
-    <Button @handle-click="handleConfirm" />
+      <Button @handle-click="handleConfirm" />
+    </div>
   </div>
 </template>
 
