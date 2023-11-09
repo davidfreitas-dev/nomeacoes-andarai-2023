@@ -4,7 +4,7 @@
 
     <div
       v-if="positions.length"
-      class="flex flex-col gap-2 px-4"
+      class="flex flex-col gap-3"
     >
       <template
         v-for="position in positions"

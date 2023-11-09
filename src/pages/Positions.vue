@@ -4,7 +4,7 @@
 
     <Header title="Cargos" />
 
-    <form class="px-4">
+    <form class="my-3">
       <div class="flex items-center gap-3">
         <Input
           v-model="department"
@@ -40,7 +40,7 @@
 
     <div
       v-if="positions.length"
-      class="flex flex-col gap-2 p-4"
+      class="flex flex-col gap-2"
     >
       <template
         v-for="position in positions"

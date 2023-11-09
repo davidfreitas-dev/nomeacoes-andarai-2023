@@ -6,7 +6,7 @@
 
     <div
       v-if="position.options && position.options.length"
-      class="options flex flex-1 flex-col items-start w-full gap-3 p-4"
+      class="options flex flex-1 flex-col items-start w-full gap-3 py-3"
     >
       <template
         v-for="option in position.options"
@@ -40,9 +40,7 @@
       </template>
     </div>
 
-    <div class="p-4">
-      <Button @handle-click="handleConfirm" />
-    </div>
+    <Button @handle-click="handleConfirm" />
   </div>
 </template>
 

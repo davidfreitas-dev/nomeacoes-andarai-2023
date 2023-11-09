@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="w-full h-12 flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 mr-2 mb-2"
+    class="w-full h-14 flex items-center justify-center text-white bg-green-600 focus:ring-4 focus:ring-green-500 active:bg-green-500 font-medium rounded-lg text-base px-5 py-2.5 my-3"
     :disabled="isLoading"
     @click="emit('handleClick')"
   >
@@ -25,7 +25,7 @@
     </svg>
     
     <span v-else>
-      Confirmar voto
+      Confirmar
     </span>
   </button>
 </template>

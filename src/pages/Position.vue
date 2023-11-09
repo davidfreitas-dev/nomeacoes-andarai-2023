@@ -4,7 +4,7 @@
   
     <Header :title="position.name" />
   
-    <form class="px-4">
+    <form class="my-3">
       <div class="flex items-center gap-3">
         <Input
           v-model="candidate"
@@ -40,7 +40,7 @@
 
     <div
       v-if="position.options && position.options.length"
-      class="flex flex-col gap-3 p-4"
+      class="flex flex-col gap-3"
     >
       <template
         v-for="option in position.options"

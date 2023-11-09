@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <div class="cards flex flex-wrap gap-3 p-4">
+    <div class="cards flex flex-wrap gap-3">
       <template
         v-for="position in positions"
         :key="position.id"
@@ -14,11 +14,11 @@
             :key="option.id"
           >
             <div class="flex items-center justify-between">
-              <p class="mb-3 font-normal text-gray-700">
+              <p class="font-normal text-gray-700">
                 {{ option.name }}
               </p>
 
-              <p class="mb-3 font-normal text-gray-700">
+              <p class="font-normal text-gray-700">
                 {{ option.count }}
               </p>
             </div>
