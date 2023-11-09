@@ -1,9 +1,11 @@
 <template>
   <button
+    type="button"
+    class="py-2 pr-2"
     @click="router.go(-1)"
   >
     <svg
-      class="w-6 h-6 text-gray-800"
+      class="w-6 h-6"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
