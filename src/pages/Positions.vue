@@ -4,39 +4,12 @@
 
     <Header title="Cargos" />
 
-    <form class="my-3">
-      <div class="flex items-center gap-3">
-        <Input
-          v-model="department"
-          placeholder="Nome do cargo"
-          :on-keyup-enter="insert"
-        />
-  
-        <button
-          type="button"
-          class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-lg text-sm p-3.5 text-center inline-flex items-center"
-          :disabled="!department"
-          @click="insert"
-        >
-          <svg
-            class="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-          <span class="sr-only">Icon description</span>
-        </button>
-      </div>
-    </form>
+    <Input
+      v-model="department"
+      placeholder="Nome do cargo"
+      @on-keyup-enter="insert"
+      @handle-insert="insert"
+    />
 
     <div
       v-if="positions.length"
