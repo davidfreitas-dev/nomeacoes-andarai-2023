@@ -19,8 +19,8 @@ import Header from '@/components/Header.vue';
 import SkeletonList from '@/components/SkeletonList.vue';
 import PositionsList from '@/components/PositionsList.vue';
 
-const positions  = ref([]);
-const isLoading  = ref(true);
+const positions = ref([]);
+const isLoading = ref(true);
 
 const getPositions = async () => {
   let data = [];

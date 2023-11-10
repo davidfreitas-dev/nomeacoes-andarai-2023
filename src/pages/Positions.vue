@@ -11,8 +11,10 @@
       @handle-insert="insert"
     />
 
+    <SkeletonList v-if="isLoading" />
+
     <div
-      v-if="positions.length"
+      v-if="!isLoading && positions.length"
       class="flex flex-col h-screen gap-3 py-3 dark:bg-background"
     >
       <template
@@ -52,10 +54,12 @@ import { db } from '@/services/firebase-firestore';
 import BackButton from '@/components/BackButton.vue';
 import Header from '@/components/Header.vue';
 import Input from '@/components/Input.vue';
+import SkeletonList from '@/components/SkeletonList.vue';
 
 const router = useRouter();
-const positions  = ref([]);
-const department  = ref('');
+const positions = ref([]);
+const department = ref('');
+const isLoading = ref(true);
 
 const getPositions = async () => {
   let data = [];
@@ -72,6 +76,8 @@ const getPositions = async () => {
   });
 
   positions.value = data.sort((a, b) => a.name.localeCompare(b.name));
+
+  isLoading.value = false;
 };
 
 onMounted(() => {
