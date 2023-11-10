@@ -2,50 +2,25 @@
   <div class="flex flex-col h-screen p-4 text-base dark:bg-background dark:text-white">
     <Header title="Cargos" />
 
-    <div
-      v-if="positions.length"
-      class="flex flex-col h-screen gap-3 py-3 dark:bg-background"
-    >
-      <template
-        v-for="position in positions"
-        :key="position.id"
-      >
-        <span
-          class="flex justify-between items-center pb-3.5 text-lg cursor-pointer border-b dark:border-zinc-900"
-          @click="selectPosition(position.id)"
-        >
-          {{ position.name }}
+    <SkeletonList v-if="isLoading" />
 
-          <svg
-            class="w-3 h-3 text-gray-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 8 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
-            />
-          </svg>
-        </span>
-      </template>
-    </div>
+    <PositionsList
+      v-else
+      :positions="positions"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/services/firebase-firestore';
 import Header from '@/components/Header.vue';
+import SkeletonList from '@/components/SkeletonList.vue';
+import PositionsList from '@/components/PositionsList.vue';
 
-const router = useRouter();
 const positions  = ref([]);
+const isLoading  = ref(true);
 
 const getPositions = async () => {
   let data = [];
@@ -62,13 +37,11 @@ const getPositions = async () => {
   });
 
   positions.value = data.sort((a, b) => a.name.localeCompare(b.name));
+
+  isLoading.value = false;
 };
 
 onMounted(() => {
   getPositions();
 });
-
-const selectPosition = (idposition) => {
-  router.push('/voting/' + idposition);
-};
 </script>
