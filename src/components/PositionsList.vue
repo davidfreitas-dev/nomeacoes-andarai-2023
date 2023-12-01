@@ -11,7 +11,13 @@
         :to="`/voting/${position.id}`"
         class="flex justify-between items-center pb-3.5 text-lg cursor-pointer border-b dark:border-zinc-900"
       >
-        <span>{{ position.name }}</span>
+        <span>
+          {{ position.name }} 
+
+          <span v-if="votes.length">
+            (Votos {{ getPositionsVotesCount(position.id) }})
+          </span>
+        </span>
 
         <ChevronRightIcon class="w-5 h-5 text-gray-400" />
       </router-link>
@@ -27,7 +33,10 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import { ChevronRightIcon } from '@heroicons/vue/24/solid';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/services/firebase-firestore';
 
 const props = defineProps({
   positions: {
@@ -35,5 +44,32 @@ const props = defineProps({
     default: () => [],
     required: true
   }
+});
+
+const votes = ref([]);
+
+const getVotes = async () => {
+  let data = [];
+
+  const querySnapshot = await getDocs(collection(db, 'votes'));
+
+  querySnapshot.forEach(doc => {
+    const votes = {
+      ...{ id: doc.id },
+      ...doc.data()
+    };
+
+    data.push(votes);
+  });
+
+  votes.value = data;
+};
+
+const getPositionsVotesCount = (idposition) => {
+  return votes.value.filter(vote => vote.idposition === idposition).length;
+};
+
+onMounted(async () => {
+  await getVotes();
 });
 </script>

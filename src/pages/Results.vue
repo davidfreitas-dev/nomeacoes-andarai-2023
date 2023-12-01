@@ -75,9 +75,16 @@ const getVotes = async () => {
   votes.value = data;
 };
 
-onMounted(() => {
+const loadData = () => {
   getPositions();
   getVotes();
+};
+
+onMounted(() => {
+  loadData();
+  setInterval(() => {
+    loadData();
+  }, 10000);
 });
 
 const getResults = (position) => {

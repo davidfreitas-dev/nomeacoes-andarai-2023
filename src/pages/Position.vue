@@ -21,7 +21,7 @@
         v-for="option in position.options"
         :key="option.id"
       >
-        <div class="flex justify-between items-center pb-3.5 text-lg cursor-pointer border-b dark:border-zinc-900">
+        <div class="flex justify-between items-center pb-3.5 text-lg border-b dark:border-zinc-900">
           <span>{{ option.name }}</span>
 
           <button
